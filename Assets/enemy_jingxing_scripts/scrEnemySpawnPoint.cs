@@ -8,7 +8,8 @@ using UnityEngine;
 public class scrEnemySpawnPoint : MonoBehaviour
 {
 
-    public bool spawn; //the flag
+    public bool spawn; //the flag, controlled by manager
+    public GameObject enemy_0;
     
     // Start is called before the first frame update
     void Start()
@@ -24,10 +25,13 @@ public class scrEnemySpawnPoint : MonoBehaviour
             Spawn();
         }
     }
+    
+    //Spawn_Checker
 
+    //When called, spawn an enemy
     bool Spawn()
     {
-        
+        Instantiate(enemy_0, transform.position, Quaternion.identity);
         return true;
     }
 }
