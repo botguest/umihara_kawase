@@ -43,7 +43,11 @@ public class scrEnemySpawnPoint : MonoBehaviour
     //When called, spawn an enemy
     bool Spawn()
     {
+        //debugging
+        print("spawned!");
+        
         Instantiate(enemy_0, transform.position, Quaternion.identity);
+        spawn = false;
         return true;
     }
 
@@ -56,7 +60,14 @@ public class scrEnemySpawnPoint : MonoBehaviour
         
         while (true)
         {
+            //debugging
+            print("spawn likeliness: " + likeliness);
             
+            //call spawn maybe?
+            if (random.Next(0, 100) <= likeliness)
+            {
+                spawn = true;
+            }
             
             yield return new WaitForSeconds(1f); //the point of execution pause & resume in following frame (after 1s)
         }
