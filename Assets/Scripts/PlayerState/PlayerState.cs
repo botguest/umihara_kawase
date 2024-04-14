@@ -30,14 +30,14 @@ public class PlayerState
     {
         //player.anim.SetBool(animBoolName, true); //Play the assigned animation
         rb = player.rb;
-        triggerCalled = false;
+        //triggerCalled = false;
     }
 
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
 
-        xInput = Input.GetAxisRaw("Horizontal");
+        xInput = Input.GetAxisRaw("Horizontal"); // return -1 or 1
         yInput = Input.GetAxisRaw("Vertical");
         player.anim.SetFloat("yVelocity", rb.velocity.y);
     }
