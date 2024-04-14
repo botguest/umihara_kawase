@@ -99,4 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn: 0
   likeliness: 0
-  enemy_0: {fileID: 1904869356995108641, guid: c567cbc282ff544a0abd864c93b751da, type: 3}
+  enemy_0: {fileID: 3619441142415838107, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}

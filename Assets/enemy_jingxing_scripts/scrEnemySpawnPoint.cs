@@ -12,7 +12,7 @@ public class scrEnemySpawnPoint : MonoBehaviour
     public bool spawn; //the flag, controlled by manager
     public int likeliness; //how likely for this spawn point to spawn. 0-100
     
-    public GameObject enemy_0; //to be spawned
+    public Enemy enemy_0; //to be spawned
     
     
     
