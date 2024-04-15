@@ -39,7 +39,6 @@ public class PlayerState
 
         xInput = Input.GetAxisRaw("Horizontal"); // return -1 or 1
         yInput = Input.GetAxisRaw("Vertical");
-        player.anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
     public virtual void Exit()

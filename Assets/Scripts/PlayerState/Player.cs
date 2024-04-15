@@ -10,12 +10,16 @@ public class Player : Entity
     public float moveSpeed;
     public float jumpForce;
 
+    
+
+
     #region States
     public PlayerStateMachine stateMachine {  get; private set; }
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
     public PlayerAirState airState { get; private set; }
+    public PlayerGrappleState grappleState { get; private set; }
     #endregion
 
 
@@ -29,6 +33,7 @@ public class Player : Entity
         moveState = new PlayerMoveState(this, stateMachine);
         airState = new PlayerAirState(this, stateMachine);
         jumpState = new PlayerJumpState(this, stateMachine);
+        grappleState = new PlayerGrappleState(this, stateMachine);
 
     }
 
