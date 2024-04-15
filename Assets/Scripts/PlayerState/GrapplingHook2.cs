@@ -81,6 +81,7 @@ public class GrapplingHook2 : MonoBehaviour
     {
         Debug.Log("Firing grapple in direction: " + lastDirection);
         hook += lastDirection * Time.deltaTime * hookSpeed;
+        grappleLength = Vector2.Distance(hook, player_transform.position);
         DrawRope(hook);
         //only three possibilities: touches a wall, touches an enemy or reach maximum distance. Else would be release button.
         if (isWallDetected())
@@ -107,13 +108,13 @@ public class GrapplingHook2 : MonoBehaviour
         joint.distance = grappleLength;
         DrawRope(grapplePoint);
 
-        /*if(Input.GetKey(KeyCode.W) && grappleLength > .2f)
-        {
-            grappleLength -= ropeLengthenSpeed;
-        }else if (Input.GetKey(KeyCode.S) && grappleLength < 5)
+        if(Input.GetKey(KeyCode.W) && grappleLength < 5f)
         {
             grappleLength += ropeLengthenSpeed;
-        }*/
+        }else if (Input.GetKey(KeyCode.S) && grappleLength > 1f)
+        {
+            grappleLength -= ropeLengthenSpeed;
+        }
 
     }
 
