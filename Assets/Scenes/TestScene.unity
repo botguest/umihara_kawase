@@ -1317,7 +1317,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   moveSpeed: 10
-  jumpForce: 20
+  jumpForce: 12
 --- !u!50 &1336549962
 Rigidbody2D:
   serializedVersion: 4
