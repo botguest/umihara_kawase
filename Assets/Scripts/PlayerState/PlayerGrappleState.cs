@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerGrappleState : PlayerState
 {
-    public PlayerGrappleState(Player _player, PlayerStateMachine _stateMachine) : base(_player, _stateMachine)
+    public PlayerGrappleState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
 
