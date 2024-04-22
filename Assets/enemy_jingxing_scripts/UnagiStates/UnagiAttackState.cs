@@ -9,15 +9,31 @@ public class UnagiAttackState : UnagiGroundedState
     {
     }
     
-    // Start is called before the first frame update
-    void Start()
+    //Haven't Worked On. Working Now.
+    
+    public override void Enter()
     {
+        base.Enter();
+
+        stateTimer = enemy.idleTime;
         
+        //spawn
+        enemy.InstantiateBaby();
+    }
+    
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        base.Update();
+
+        if (stateTimer < 0)
+            stateMachine.ChangeState(enemy.moveState);
+
+
     }
 }
