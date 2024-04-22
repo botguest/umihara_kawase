@@ -11,6 +11,9 @@ public class UnagiMoveState : UnagiGroundedState
     public override void Enter()
     {
         base.Enter();
+        
+        //throw fish after specific sec
+        stateTimerThrowFish = enemy.throwFishTime;
     }
 
     public override void Exit()
@@ -28,6 +31,13 @@ public class UnagiMoveState : UnagiGroundedState
         {
             enemy.Flip();
             stateMachine.ChangeState(enemy.idleState);
+        }
+        
+        //if it is time to throw fish
+        //add another check for if thrown already.
+        if (stateTimerThrowFish < 0)
+        {
+            stateMachine.ChangeState(enemy.attackState);
         }
     }
 }

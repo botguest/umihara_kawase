@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class scrEnemy_Unagi : Enemy
 {
+
+    [Header("Unagi-specific Info")] public float throwFishTime;
+    public GameObject UnagiBaby; //assigned in unity editor
     
     #region States
     
@@ -35,5 +38,10 @@ public class scrEnemy_Unagi : Enemy
     void Update()
     {
         base.Update();
+    }
+
+    public void InstantiateBaby()
+    {
+        Instantiate(UnagiBaby, transform.position, new Quaternion()).GetComponent<scrEnemy_UnagiBaby>().initialFacingDir = base.facingDir;
     }
 }

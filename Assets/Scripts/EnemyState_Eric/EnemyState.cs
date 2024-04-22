@@ -11,6 +11,8 @@ public class EnemyState
     private string animBoolName;
 
     protected float stateTimer;
+    //the timer for throw_fish for bucket & unagi
+    protected float stateTimerThrowFish;
 
     public EnemyState(Enemy _enemyBase, EnemyStateMachine _stateMachine)
     {
@@ -21,6 +23,7 @@ public class EnemyState
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
+        stateTimerThrowFish -= Time.deltaTime;
     }
 
     public virtual void Enter()

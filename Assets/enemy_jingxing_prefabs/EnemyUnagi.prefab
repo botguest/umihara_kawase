@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100488759322850540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyGroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1096195384087788090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyWallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 8446908362079722548}
   - component: {fileID: 7068061192784873946}
   - component: {fileID: 6358657348643123812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyUnagi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,3 +241,5 @@ MonoBehaviour:
   attackDistance: 0
   attackCooldown: 0
   lastTimeAttacked: 0
+  throwFishTime: 1
+  UnagiBaby: {fileID: 4020130793470423837, guid: 2ef538615df234a348da4ef0fb044aba, type: 3}
