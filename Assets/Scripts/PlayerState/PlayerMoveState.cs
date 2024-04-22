@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedState
 {
-    public PlayerMoveState(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+    public PlayerMoveState(Player player, PlayerStateMachine stateMachine, string _animBoolName) : base(player, stateMachine, _animBoolName)
     {
     }
 

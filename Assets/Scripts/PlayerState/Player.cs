@@ -29,11 +29,11 @@ public class Player : Entity
 
         stateMachine = new PlayerStateMachine(); 
 
-        idleState = new PlayerIdleState(this, stateMachine);
-        moveState = new PlayerMoveState(this, stateMachine);
-        airState = new PlayerAirState(this, stateMachine);
-        jumpState = new PlayerJumpState(this, stateMachine);
-        grappleState = new PlayerGrappleState(this, stateMachine);
+        idleState = new PlayerIdleState(this, stateMachine, "Idle");
+        moveState = new PlayerMoveState(this, stateMachine, "Move");
+        airState = new PlayerAirState(this, stateMachine, "Jump");
+        jumpState = new PlayerJumpState(this, stateMachine, "Jump");
+        grappleState = new PlayerGrappleState(this, stateMachine, "Grapple");
 
     }
 
@@ -50,6 +50,7 @@ public class Player : Entity
 
     }
 
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishedTrigger();
     public IEnumerator BusyFor(float _seconds)
     {
         isBusy = true;

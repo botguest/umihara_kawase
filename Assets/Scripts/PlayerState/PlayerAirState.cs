@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerState
 { 
-    public PlayerAirState(Player _player, PlayerStateMachine _stateMachine) : base(_player, _stateMachine)
+    public PlayerAirState(Player player, PlayerStateMachine stateMachine, string _animBoolName) : base(player, stateMachine, _animBoolName)
     {
 
     }
