@@ -12,6 +12,8 @@ public class PlayerDeadState : PlayerState
     {
         base.Enter();
         player.SetZeroVelocity();
+        player.GetComponent<Collider2D>().enabled = false;
+        rb.gravityScale = 0;
 
     }
 

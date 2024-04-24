@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 921023219537579258}
   - component: {fileID: 4004703505435896453}
   - component: {fileID: 2147298904270829798}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyBucket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
