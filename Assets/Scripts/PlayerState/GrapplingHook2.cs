@@ -1,25 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GrapplingHook2 : MonoBehaviour
 {
-    private Vector2 lastDirection = Vector2.right;
+    private Vector3 lastDirection = Vector3.right;
     private bool isHooked = false;
-    private bool isFiring = false; //grapple hook is travelling
+    private bool isFiring = false; //grapple hook is traveling
     private Transform player_transform;
-    private Vector2 hook;
+    private Vector3 hook;
     [SerializeField] private float hookSpeed;
     [SerializeField] private LineRenderer rope;
     [SerializeField] private float rope_max_dist;
     [SerializeField] private float deviation;
     [SerializeField] private LayerMask grappledLayer;
+    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private SpringJoint2D joint;
-    [SerializeField] private float grappleLength;
-    [SerializeField] private float grappleLengthMax;
+    private float grappleLength;
     [SerializeField] private float ropeLengthenSpeed;
-    private Vector2 grapplePoint;
+    private Vector3 grapplePoint;
+    [SerializeField] private float tensionDistance;
+    private float freeMovingDist;
+    private Vector3 lastDirectionSaved;
+
 
 
     //still need to implement a basic spring potential energy system, for the acceleration is not precise
@@ -42,21 +47,24 @@ public class GrapplingHook2 : MonoBehaviour
                 rope.enabled = false;
                 CheckGrappleLaunch();
             }
-            else if (!isHooked && isFiring) //firing state
-            {
+        }
+
+        if(Input.GetKey(KeyCode.J))
+        if (!isHooked && isFiring) //firing state
+        {
                 Debug.Log("exec");
                 FiringGrapple();
-            }
-            else if (isHooked && !isFiring)// hanged state
-            {
-                //rope shorten and lengthen logic
-                hookAttached();
-            }
-            else
-            {
-                return;
-            }
         }
+        else if (isHooked && !isFiring)// hanged state
+        {
+            //rope shorten and lengthen logic
+            hookAttachedToWall();
+        }
+        else
+        {
+            return;
+        }
+        
 
         if(Input.GetKeyUp(KeyCode.J))
         {
@@ -75,22 +83,29 @@ public class GrapplingHook2 : MonoBehaviour
         Debug.Log("Launch grapple in direction: " + direction);
         isFiring = true;
         isHooked = false;
+        lastDirectionSaved = lastDirection;
     }
 
     void FiringGrapple()
     {
         Debug.Log("Firing grapple in direction: " + lastDirection);
-        hook += lastDirection * Time.deltaTime * hookSpeed;
-        grappleLength = Vector2.Distance(hook, player_transform.position);
+        hook += lastDirectionSaved * Time.deltaTime * hookSpeed;
+        
         DrawRope(hook);
         //only three possibilities: touches a wall, touches an enemy or reach maximum distance. Else would be release button.
         if (isWallDetected())
         {
             isFiring = false;
             isHooked = true;
-        }
 
-        //if(isEnemyDetected())
+            //these are put here because they should only be triggered once
+            grapplePoint = hook;
+            joint.connectedAnchor = grapplePoint;
+            grappleLength = Vector2.Distance(grapplePoint, player_transform.position);
+            joint.enabled = true;
+            freeMovingDist = grappleLength;
+            
+        }
 
         if (isMaxDistReached())
         {
@@ -98,27 +113,54 @@ public class GrapplingHook2 : MonoBehaviour
             isHooked = false;
             Debug.Log("Maximum Distance Reached!");
         }
+
+        if(isEnemyDetected())
+        {
+            //enemy stunned logic should be written in enemy itself?
+        }
     }
 
-    void hookAttached()
+    void hookAttachedToWall()
     {
-        grapplePoint = hook;
-        joint.connectedAnchor = grapplePoint;
-        joint.enabled = true;
+        float maxDist = freeMovingDist + tensionDistance;
+        joint.distance = grappleLength;
+        DrawRope(grapplePoint);
+        
+        //there are two distances. One distance is free moving distance, in which player can move freely without feeling the tension. But once this distance is exceeded, the player will feel tension, and cannot move out a fixed distance.
+
+        if(Input.GetKey(KeyCode.S) && freeMovingDist >= .2f) //when player shortens the wire, the free moving distance and distance of spring both decreases, while frequency remains unchanged. So player will be pulled.
+        {
+            freeMovingDist -= ropeLengthenSpeed * Time.deltaTime;
+            grappleLength -= ropeLengthenSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.W) && freeMovingDist <= rope_max_dist) //when players lengthens the wire, the free moving distance increases, but the distance doesn't change. When the player moves the distance changes.
+        {
+            freeMovingDist += ropeLengthenSpeed * Time.deltaTime;
+            grappleLength += ropeLengthenSpeed * Time.deltaTime;
+
+        }
+    }
+
+    void hookAttachedToEnemy()
+    {
         joint.distance = grappleLength;
         DrawRope(grapplePoint);
 
-        if(Input.GetKey(KeyCode.W) && grappleLength < 5f)
-        {
-            grappleLength += ropeLengthenSpeed;
-        }else if (Input.GetKey(KeyCode.S) && grappleLength > 1f)
-        {
-            grappleLength -= ropeLengthenSpeed;
-        }
+        //there are two distances. One distance is free moving distance, in which player can move freely without feeling the tension. But once this distance is exceeded, the player will feel tension, and cannot move out a fixed distance.
 
+        if (Input.GetKey(KeyCode.S)) //when player shortens the wire, the free moving distance and distance of spring both decreases, while frequency remains unchanged. So player will be pulled.
+        {
+            grappleLength -= ropeLengthenSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.W) && freeMovingDist <= rope_max_dist) //when players lengthens the wire, the free moving distance increases, but the distance doesn't change. When the player moves the distance changes.
+        {
+            freeMovingDist += ropeLengthenSpeed * Time.deltaTime;
+            grappleLength += ropeLengthenSpeed * Time.deltaTime;
+
+        }
     }
 
-    
+
 
     bool isWallDetected()
     {
@@ -136,6 +178,16 @@ public class GrapplingHook2 : MonoBehaviour
             return false;
         }
     }
+
+    bool isEnemyDetected()
+    {
+        bool hit = Physics2D.OverlapPoint(hook, enemyLayer);
+        Collider2D hitObject = Physics2D.OverlapPoint(hook, enemyLayer);
+        //hitObject.gameObject.a certain function which triggers stunned state
+        return hit;
+    
+    }
+    
 
     void CheckDirectionInput()
     {

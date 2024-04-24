@@ -73,4 +73,16 @@ public class Entity : MonoBehaviour
         FlipController(_xVelocity);
     }
     #endregion
+
+    public void AddVelocity(float _xVelocity, float _yVelocity)
+    {
+        rb.velocity = new Vector2(_xVelocity, _yVelocity);
+        FlipController(rb.velocity.x);
+    }
+
+    public void Addforce(float _xForce, float _yForce)
+    {
+        rb.AddForce(new Vector2(_xForce, _yForce), ForceMode2D.Force);
+        FlipController(rb.velocity.x);
+    }
 }
