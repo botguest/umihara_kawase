@@ -19,7 +19,8 @@ public class Player : Entity
     public PlayerMoveState moveState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
     public PlayerAirState airState { get; private set; }
-    public PlayerGrappleState grappleState { get; private set; }
+    public PlayerGrappleState grappleState { get; private set; }    
+    public PlayerDeadState deadState { get; private set; }
     #endregion
 
 
@@ -34,6 +35,7 @@ public class Player : Entity
         airState = new PlayerAirState(this, stateMachine, "Jump");
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
         grappleState = new PlayerGrappleState(this, stateMachine, "Grapple");
+        deadState = new PlayerDeadState(this, stateMachine, "Dead");
 
     }
 
@@ -58,5 +60,13 @@ public class Player : Entity
         yield return new WaitForSeconds(_seconds);
 
         isBusy = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "enemy") //also detect if a certain boolean in the enemy script is true (stunned/not stunned)
+        {
+            stateMachine.ChangeState(deadState);
+        }
     }
 }
