@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GrapplingHook2 : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class GrapplingHook2 : MonoBehaviour
     private float freeMovingDist;
     private Vector3 lastDirectionSaved;
 
+    //Jingxing's Mods
+    public UnityEvent<GameObject> onEnemyGrappled; //the event of when an enemy is grappled.
+    //Jingxing's Mods
 
 
     //still need to implement a basic spring potential energy system, for the acceleration is not precise
@@ -34,6 +38,11 @@ public class GrapplingHook2 : MonoBehaviour
         rope.enabled = false;
         joint.enabled = false;
         player_transform = GetComponent<Transform>();
+        
+        //Jingxing's Mods
+        if (onEnemyGrappled == null)
+            onEnemyGrappled = new UnityEvent<GameObject>(); //setting up
+        //Jingxing's Mods
     }
     void Update()
     {
@@ -184,8 +193,13 @@ public class GrapplingHook2 : MonoBehaviour
         bool hit = Physics2D.OverlapPoint(hook, enemyLayer);
         Collider2D hitObject = Physics2D.OverlapPoint(hook, enemyLayer);
         //hitObject.gameObject.a certain function which triggers stunned state
+        
+        //Jingxing's Mods
+        onEnemyGrappled.Invoke(hitObject.GameObject()); //invoking the event & passing through hit object.
+        //Jingxing's Mods
+        
         return hit;
-    
+        
     }
     
 

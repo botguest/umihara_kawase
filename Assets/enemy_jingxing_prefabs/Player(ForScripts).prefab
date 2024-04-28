@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 8031944938738048668}
   m_Layer: 0
   m_Name: Player(ForScripts)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,10 +300,15 @@ MonoBehaviour:
   grappledLayer:
     serializedVersion: 2
     m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   joint: {fileID: 9364332803646179}
-  grappleLength: 2.5
-  grappleLengthMax: 6
   ropeLengthenSpeed: 0.01
+  tensionDistance: 0
+  onEnemyGrappled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5109513692363722453
 GameObject:
   m_ObjectHideFlags: 0
