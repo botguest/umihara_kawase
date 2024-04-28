@@ -72,6 +72,12 @@ public class scrEnemy_Bucket : Enemy
         Vector2 launchDirection = new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
         
         
-        Instantiate(SmallFish, transform.position + new Vector3(0,1,0), transform.rotation).GetComponent<Rigidbody2D>().AddForce(launchDirection * launchForce);
+        GameObject SmallFishSpawned = Instantiate(SmallFish, transform.position + new Vector3(0,1,0), transform.rotation);
+        SmallFishSpawned.GetComponent<Rigidbody2D>().AddForce(launchDirection * launchForce);
+
+        if (to_left)
+        {
+            SmallFishSpawned.GetComponent<scrEnemy_SmallFish>().Flip();
+        }
     }
 }
