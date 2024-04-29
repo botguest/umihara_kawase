@@ -29,5 +29,7 @@ public class GoldFishMoveState : GoldFishGroundedState
             enemy.Flip();
             stateMachine.ChangeState(enemy.idleState);
         }
+
+        CheckIfGrappled();
     }
 }

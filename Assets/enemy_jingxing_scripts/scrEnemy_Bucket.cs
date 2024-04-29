@@ -12,6 +12,7 @@ public class scrEnemy_Bucket : Enemy
     #region States
 
     public BucketIdleState idleState { get; private set; }
+    public BucketGrappledState grappledState { get; private set; }
 
     #endregion
     
@@ -22,6 +23,7 @@ public class scrEnemy_Bucket : Enemy
         base.Awake();
 
         idleState = new BucketIdleState(this, stateMachine, this);
+        grappledState = new BucketGrappledState(this, stateMachine, this);
     }
 
     protected override void Start()

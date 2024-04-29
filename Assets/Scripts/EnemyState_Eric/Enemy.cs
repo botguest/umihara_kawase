@@ -16,6 +16,10 @@ public class Enemy : Entity
     public float attackCooldown;
     [HideInInspector] public float lastTimeAttacked;
     
+    //Jingxing's Mods
+    public bool grappled;
+    //Jingxing's Mods
+    
     public EnemyStateMachine stateMachine { get; private set; }
 
     protected override void Awake()
@@ -25,8 +29,8 @@ public class Enemy : Entity
         
         //Jingxing's Mods
         GameObject thePlayer = GameObject.FindWithTag("Player");
-        
         thePlayer.GetComponent<GrapplingHook2>().onEnemyGrappled.AddListener(Grappled);
+        grappled = false;
         //Jingxing's Mods
     }
 
@@ -54,6 +58,8 @@ public class Enemy : Entity
         {
             Debug.Log("Grappling Hook Grappled " + this.gameObject);
             // it is working!
+            grappled = true;
+            //let the state transition begin... Access grappled.
         }
     }
     //Jingxing's Mods

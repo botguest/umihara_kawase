@@ -13,6 +13,7 @@ public class scrEnemy_Unagi : Enemy
     public UnagiMoveState moveState { get; private set; }
     public UnagiIdleState idleState {  get; private set; }
     public UnagiAttackState attackState {  get; private set; }
+    public UnagiGrappledState grappledState { get; private set; }
     //public SkeletonBattleState battleState { get; private set; }
 
     #endregion
@@ -24,6 +25,7 @@ public class scrEnemy_Unagi : Enemy
         idleState = new UnagiIdleState(this, stateMachine, this);
         moveState = new UnagiMoveState(this, stateMachine, this);
         attackState = new UnagiAttackState(this, stateMachine, this); //not yet worked on
+        grappledState = new UnagiGrappledState(this, stateMachine, this);
         //battleState = new SkeletonBattleState(this, stateMachine, "Move", this);
     }
 

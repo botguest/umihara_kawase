@@ -39,5 +39,7 @@ public class UnagiMoveState : UnagiGroundedState
         {
             stateMachine.ChangeState(enemy.attackState);
         }
+        
+        CheckIfGrappled();
     }
 }
