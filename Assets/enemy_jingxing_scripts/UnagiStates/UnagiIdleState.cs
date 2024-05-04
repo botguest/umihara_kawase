@@ -30,6 +30,6 @@ public class UnagiIdleState : UnagiGroundedState
         if (stateTimer < 0)
             stateMachine.ChangeState(enemy.moveState);
 
-
+        CheckIfGrappled();
     }
 }

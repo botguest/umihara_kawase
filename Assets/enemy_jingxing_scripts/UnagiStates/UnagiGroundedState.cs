@@ -39,4 +39,12 @@ public class UnagiGroundedState : EnemyState //this is the foundation for other 
         {
         }
     }
+    
+    public void CheckIfGrappled() //present in every GroundedState.
+    {
+        if (enemy.grappled) //if grappled
+        {
+            stateMachine.ChangeState(enemy.grappledState);
+        }
+    }
 }

@@ -39,4 +39,12 @@ public class BucketGroundedState : EnemyState
         {
         }
     }
+    
+    public void CheckIfGrappled() //present in every GroundedState.
+    {
+        if (enemy.grappled) //if grappled
+        {
+            stateMachine.ChangeState(enemy.grappledState);
+        }
+    }
 }

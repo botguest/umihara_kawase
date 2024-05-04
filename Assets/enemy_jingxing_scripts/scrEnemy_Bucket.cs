@@ -12,6 +12,7 @@ public class scrEnemy_Bucket : Enemy
     #region States
 
     public BucketIdleState idleState { get; private set; }
+    public BucketGrappledState grappledState { get; private set; }
 
     #endregion
     
@@ -22,6 +23,7 @@ public class scrEnemy_Bucket : Enemy
         base.Awake();
 
         idleState = new BucketIdleState(this, stateMachine, this);
+        grappledState = new BucketGrappledState(this, stateMachine, this);
     }
 
     protected override void Start()
@@ -72,6 +74,12 @@ public class scrEnemy_Bucket : Enemy
         Vector2 launchDirection = new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
         
         
-        Instantiate(SmallFish, transform.position + new Vector3(0,1,0), transform.rotation).GetComponent<Rigidbody2D>().AddForce(launchDirection * launchForce);
+        GameObject SmallFishSpawned = Instantiate(SmallFish, transform.position + new Vector3(0,1,0), transform.rotation);
+        SmallFishSpawned.GetComponent<Rigidbody2D>().AddForce(launchDirection * launchForce);
+
+        if (to_left)
+        {
+            SmallFishSpawned.GetComponent<scrEnemy_SmallFish>().Flip();
+        }
     }
 }

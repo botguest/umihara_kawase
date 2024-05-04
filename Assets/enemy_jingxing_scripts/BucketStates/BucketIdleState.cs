@@ -45,6 +45,7 @@ public class BucketIdleState : BucketGroundedState
             stateTimer = enemy.idleTime;
         }
 
+        CheckIfGrappled();
 
     }
 }

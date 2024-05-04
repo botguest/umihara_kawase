@@ -33,7 +33,8 @@ public class UnagiAttackState : UnagiGroundedState
 
         if (stateTimer < 0)
             stateMachine.ChangeState(enemy.moveState);
-
+        
+        CheckIfGrappled();
 
     }
 }

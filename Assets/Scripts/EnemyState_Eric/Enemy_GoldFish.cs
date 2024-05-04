@@ -7,6 +7,7 @@ public class Enemy_GoldFish : Enemy
     #region States
     public GoldFishIdleState idleState {  get; private set; }
     public GoldFishMoveState moveState { get; private set; }
+    public GoldFishGrappledState grappledState { get; private set; }
     //public SkeletonBattleState battleState { get; private set; }
 
     #endregion
@@ -18,6 +19,7 @@ public class Enemy_GoldFish : Enemy
 
         idleState = new GoldFishIdleState(this, stateMachine, this);
         moveState = new GoldFishMoveState(this, stateMachine, this);
+        grappledState = new GoldFishGrappledState(this, stateMachine, this);
         //battleState = new SkeletonBattleState(this, stateMachine, "Move", this);
     }
 

@@ -26,7 +26,7 @@ public class GoldFishIdleState : GoldFishGroundedState
 
         if (stateTimer < 0)
             stateMachine.ChangeState(enemy.moveState);
-
-
+        
+        CheckIfGrappled();
     }
 }
