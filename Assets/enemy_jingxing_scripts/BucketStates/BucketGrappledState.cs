@@ -12,6 +12,8 @@ public class BucketGrappledState : BucketGroundedState
     public override void Enter()
     {
         base.Enter();
+        
+        stateTimer = enemy.shockTime;
     }
 
     public override void Exit()
@@ -22,5 +24,9 @@ public class BucketGrappledState : BucketGroundedState
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
+        
+        CheckIfRecovered();
+        CheckIfGrappled();
     }
 }
