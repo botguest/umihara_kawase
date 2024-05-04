@@ -13,6 +13,7 @@ public class GoldFishGrappledState : GoldFishGroundedState
         base.Enter();
         
         Debug.Log("Entered Goldfish Grappled State!!");
+        stateTimer = enemy.shockTime;
     }
 
     public override void Exit()
@@ -20,8 +21,26 @@ public class GoldFishGrappledState : GoldFishGroundedState
         base.Exit();
     }
 
-    // Update is called once per frame
+    // Move with the player
+    //After certain time, go back to idle
+    //if grappled go back to grappled
     public override void Update()
     {
+
+        
+        
+        if (stateTimer < 0)
+        {
+            stateMachine.ChangeState(enemy.idleState);
+        }
+        
+        CheckIfGrappled();
+        
+        //get move dir
+    }
+
+    private void GetGrappledMoveDir()
+    {
+        
     }
 }

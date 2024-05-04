@@ -188,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 288666096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.56, y: -0.14000048, z: -10}
+  m_LocalPosition: {x: 12.56, y: 0.27999952, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -543,7 +543,7 @@ Transform:
   m_GameObject: {fileID: 658452628}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.56, y: -0.14000048, z: -10}
+  m_LocalPosition: {x: 12.56, y: 0.27999952, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1181,7 +1181,7 @@ GameObject:
   - component: {fileID: 1336549967}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1266,8 +1266,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.07416707}
-  m_Size: {x: 1, y: 0.0001}
+  m_Offset: {x: 0, y: -0.0061000586}
+  m_Size: {x: 1, y: 1.6497824}
   m_Direction: 0
 --- !u!4 &1336549964
 Transform:
@@ -1278,7 +1278,7 @@ Transform:
   m_GameObject: {fileID: 1336549959}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.56, y: -0.14, z: 0}
+  m_LocalPosition: {x: 12.56, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1335,6 +1335,9 @@ MonoBehaviour:
   joint: {fileID: 1336549966}
   ropeLengthenSpeed: 10
   tensionDistance: 3
+  onEnemyGrappled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1377776704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1363,7 @@ Transform:
   m_GameObject: {fileID: 1377776704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

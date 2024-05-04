@@ -9,7 +9,7 @@ public class Enemy : Entity
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
-    public float battleTime;
+    public float shockTime; //Jingxing's Mods, for counting down the shock time after hook is gone
 
     [Header("Attack Info")]
     public float attackDistance;
