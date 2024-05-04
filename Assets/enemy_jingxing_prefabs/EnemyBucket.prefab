@@ -206,10 +206,11 @@ MonoBehaviour:
     m_Bits: 0
   moveSpeed: 0
   idleTime: 4
-  battleTime: 0
+  shockTime: 1
   attackDistance: 0
   attackCooldown: 0
   lastTimeAttacked: 0
+  grappled: 0
   SmallFish: {fileID: 2273365706686771310, guid: 7d4cd54ff9134478f997746a1d2e496f, type: 3}
   launchForce: 1000
 --- !u!1 &6060034119608043624

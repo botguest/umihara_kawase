@@ -27,13 +27,9 @@ public class GoldFishGrappledState : GoldFishGroundedState
     public override void Update()
     {
 
+        base.Update();
         
-        
-        if (stateTimer < 0)
-        {
-            stateMachine.ChangeState(enemy.idleState);
-        }
-        
+        CheckIfRecovered();
         CheckIfGrappled();
         
         //get move dir
