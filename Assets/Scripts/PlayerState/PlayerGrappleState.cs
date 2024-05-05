@@ -10,18 +10,35 @@ public class PlayerGrappleState : PlayerState
 
     public override void Enter()
     {
+
         base.Enter();
+
+        stateTimer = 1f;
+
+
+        player.GetComponent<GrapplingHook2>().enabled = false;
+        //play some grappled sfx
     }
 
     public override void Exit()
     {
         base.Exit();
 
+        player.NotGrappleEnemy();
+        player.GetComponent<GrapplingHook2>().enabled = true;
     }
 
     public override void Update()
     {
         base.Update();
 
+        if(stateTimer < 0)
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
+        else
+        {
+            player.SetZeroVelocity();
+        }
     }
 }

@@ -188,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 288666096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.56, y: 0.27999952, z: -10}
+  m_LocalPosition: {x: 11.52, y: 0.27599952, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -543,7 +543,7 @@ Transform:
   m_GameObject: {fileID: 658452628}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.56, y: 0.27999952, z: -10}
+  m_LocalPosition: {x: 11.52, y: 0.27599952, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1377776705}
-  groundCheckDistance: 0.7
+  groundCheckDistance: 0.82
   wallCheck: {fileID: 1264866105}
   wallCheckDistance: 0.76
   whatIsGround:
@@ -1266,8 +1266,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0061000586}
-  m_Size: {x: 1, y: 1.6497824}
+  m_Offset: {x: 0.0042672157, y: -0.0061000586}
+  m_Size: {x: 0.9402609, y: 1.7863319}
   m_Direction: 0
 --- !u!4 &1336549964
 Transform:
@@ -1278,7 +1278,7 @@ Transform:
   m_GameObject: {fileID: 1336549959}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.56, y: 0.28, z: 0}
+  m_LocalPosition: {x: 11.52, y: 0.276, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1309,7 +1309,7 @@ SpringJoint2D:
   m_AutoConfigureDistance: 1
   m_Distance: 8.4969635
   m_DampingRatio: 0.1
-  m_Frequency: 2.5
+  m_Frequency: 2.2
 --- !u!114 &1336549967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,6 +1335,7 @@ MonoBehaviour:
   joint: {fileID: 1336549966}
   ropeLengthenSpeed: 10
   tensionDistance: 3
+  player: {fileID: 1336549959}
   onEnemyGrappled:
     m_PersistentCalls:
       m_Calls: []
@@ -1396,8 +1397,8 @@ Transform:
   m_GameObject: {fileID: 1436192959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.66, y: -5.43, z: 0}
-  m_LocalScale: {x: 18.39691, y: 9.086055, z: 1}
+  m_LocalPosition: {x: 12.05, y: -5.43, z: 0}
+  m_LocalScale: {x: 34.264244, y: 9.086055, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 615388264}
@@ -1507,13 +1508,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 770237270595873132, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 770237270595873132, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}
+      propertyPath: m_GravityScale
+      value: 9.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2174818469088664562, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.4321675
+      value: 20.62
       objectReference: {fileID: 0}
     - target: {fileID: 2174818469088664562, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23917675
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2174818469088664562, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1550,6 +1559,10 @@ PrefabInstance:
     - target: {fileID: 2867966961649046560, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}
       propertyPath: m_Name
       value: EnemyGoldFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619441142415838107, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}
+      propertyPath: shockTime
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

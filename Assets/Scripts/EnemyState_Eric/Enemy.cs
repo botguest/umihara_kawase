@@ -61,8 +61,6 @@ public class Enemy : Entity
             // it is working!
             grappled = true;
             //let the state transition begin... Access grappled.
-            thePlayer.GetComponent<SpringJoint2D>().connectedBody = rb;
-            //thePlayer.GetComponent<SpringJoint2D>().connectedAnchor = this.transform.position;
         }
     }
     //Jingxing's Mods

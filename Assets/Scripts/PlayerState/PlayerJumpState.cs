@@ -12,6 +12,7 @@ public class PlayerJumpState : PlayerState
     {
         base.Enter();
 
+        //player.Addforce(0, player.jumpForce);
         rb.velocity = new Vector2(rb.velocity.x, player.jumpForce);
     }
 
@@ -24,7 +25,7 @@ public class PlayerJumpState : PlayerState
     {
         base.Update();
 
-        player.Addforce(0, player.jumpForce);
+        
 
         if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.airState);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Entity
@@ -9,8 +10,17 @@ public class Player : Entity
     [Header("Move Info")]
     public float moveSpeed;
     public float jumpForce;
+    private bool grapple = false;
 
-    
+    public void GrappleEnemy()
+    {
+        grapple = true;
+    }
+
+    public void NotGrappleEnemy()
+    {
+        grapple = false;
+    }
 
 
     #region States
@@ -49,6 +59,9 @@ public class Player : Entity
     {
         base.Update();
         stateMachine.currentState.Update();
+        Debug.Log(stateMachine.currentState);
+
+
 
     }
 
@@ -66,7 +79,16 @@ public class Player : Entity
     {
         if(collision.gameObject.tag == "enemy") //also detect if a certain boolean in the enemy script is true (stunned/not stunned)
         {
-            stateMachine.ChangeState(deadState);
+            if(grapple == true)
+            {
+                stateMachine.ChangeState(grappleState);
+            }
+            else
+            {
+                stateMachine.ChangeState(deadState);
+            }
         }
     }
+
+    
 }
