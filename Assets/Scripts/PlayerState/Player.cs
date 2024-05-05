@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Player : Entity
 {
@@ -31,6 +32,7 @@ public class Player : Entity
     public PlayerAirState airState { get; private set; }
     public PlayerGrappleState grappleState { get; private set; }    
     public PlayerDeadState deadState { get; private set; }
+    public PlayerLadderState ladderState { get; private set; }
     #endregion
 
 
@@ -46,6 +48,7 @@ public class Player : Entity
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
         grappleState = new PlayerGrappleState(this, stateMachine, "Grapple");
         deadState = new PlayerDeadState(this, stateMachine, "Dead");
+        ladderState = new PlayerLadderState(this, stateMachine, "ladder");
 
     }
 
@@ -60,9 +63,6 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
         Debug.Log(stateMachine.currentState);
-
-
-
     }
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishedTrigger();
@@ -90,5 +90,24 @@ public class Player : Entity
         }
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D collision) //if the player jumps onto the ladder
+    {
+        if(collision.CompareTag("ladder"))
+        {
+            Debug.Log("in ladder");
+            stateMachine.ChangeState(ladderState);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) //if the player jumps onto the ladder
+    {
+        if (collision.CompareTag("ladder"))
+        {
+            stateMachine.ChangeState(idleState);
+            rb.AddForce(new Vector2(facingDir * 30, 60), ForceMode2D.Impulse);
+        }
+    }
+
+
+
 }
