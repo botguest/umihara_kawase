@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : Entity
 {
     [SerializeField] protected LayerMask whatIsPlayer;
+    GameObject thePlayer;
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
@@ -28,7 +29,7 @@ public class Enemy : Entity
         stateMachine = new EnemyStateMachine();
         
         //Jingxing's Mods
-        GameObject thePlayer = GameObject.FindWithTag("Player");
+        thePlayer = GameObject.FindWithTag("Player");
         thePlayer.GetComponent<GrapplingHook2>().onEnemyGrappled.AddListener(Grappled);
         grappled = false;
         //Jingxing's Mods
@@ -60,6 +61,8 @@ public class Enemy : Entity
             // it is working!
             grappled = true;
             //let the state transition begin... Access grappled.
+            thePlayer.GetComponent<SpringJoint2D>().connectedBody = rb;
+            //thePlayer.GetComponent<SpringJoint2D>().connectedAnchor = this.transform.position;
         }
     }
     //Jingxing's Mods

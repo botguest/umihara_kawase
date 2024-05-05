@@ -126,6 +126,13 @@ public class GrapplingHook2 : MonoBehaviour
         if(isEnemyDetected())
         {
             //enemy stunned logic should be written in enemy itself?
+            isFiring = false;
+            isHooked = true;
+
+            //these are put here because they should only be triggered once
+            grappleLength = Vector2.Distance(joint.connectedAnchor, player_transform.position);
+            joint.enabled = true;
+            freeMovingDist = grappleLength;
         }
     }
 
@@ -193,11 +200,14 @@ public class GrapplingHook2 : MonoBehaviour
         bool hit = Physics2D.OverlapPoint(hook, enemyLayer);
         Collider2D hitObject = Physics2D.OverlapPoint(hook, enemyLayer);
         //hitObject.gameObject.a certain function which triggers stunned state
-        
+
         //Jingxing's Mods
-        onEnemyGrappled.Invoke(hitObject.GameObject()); //invoking the event & passing through hit object.
+        if (hit)
+        {
+            onEnemyGrappled.Invoke(hitObject.GameObject()); //invoking the event & passing through hit object.
+        }
         //Jingxing's Mods
-        
+
         return hit;
         
     }
