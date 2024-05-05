@@ -46,4 +46,13 @@ public class scrEnemy_Unagi : Enemy
     {
         Instantiate(UnagiBaby, transform.position, new Quaternion()).GetComponent<scrEnemy_UnagiBaby>().initialFacingDir = base.facingDir;
     }
+    
+    //need a on collisionEnter
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player") && IsMyStateGrappled<UnagiGrappledState>())
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -82,4 +82,13 @@ public class scrEnemy_Bucket : Enemy
             SmallFishSpawned.GetComponent<scrEnemy_SmallFish>().Flip();
         }
     }
+    
+    //need a on collisionEnter
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player") && IsMyStateGrappled<BucketGrappledState>())
+        {
+            Destroy(gameObject);
+        }
+    }
 }

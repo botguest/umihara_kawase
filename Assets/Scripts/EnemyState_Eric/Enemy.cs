@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -62,6 +63,12 @@ public class Enemy : Entity
             grappled = true;
             //let the state transition begin... Access grappled.
         }
+    }
+    
+    //collision when in Grappled State, helper
+    public bool IsMyStateGrappled<GrappledStateType>() where GrappledStateType : EnemyState
+    {
+        return stateMachine.currentState is GrappledStateType;
     }
     //Jingxing's Mods
 }

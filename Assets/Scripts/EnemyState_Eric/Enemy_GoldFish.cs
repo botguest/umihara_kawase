@@ -34,4 +34,13 @@ public class Enemy_GoldFish : Enemy
     {
         base.Update();
     }
+    
+    //need a on collisionEnter
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player") && IsMyStateGrappled<GoldFishGrappledState>())
+        {
+            Destroy(gameObject);
+        }
+    }
 }
