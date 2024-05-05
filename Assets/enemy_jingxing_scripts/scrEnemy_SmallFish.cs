@@ -6,7 +6,9 @@ using UnityEngine;
 //Haven't Setup. Work on later. No states defined.
 public class scrEnemy_SmallFish : Enemy
 {
-    
+
+    [Header("smallfish-specific Info")] 
+    public float hitForce;
     
     #region States
     
@@ -53,5 +55,18 @@ public class scrEnemy_SmallFish : Enemy
     {
         Debug.Log("Small Fish became invisible");
         Destroy(gameObject);
+    }
+    
+    //add force here
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Vector3 force_direction = new Vector3(facingDir, 1,0);
+        force_direction = force_direction * hitForce;
+        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(force_direction, ForceMode2D.Impulse);
+            Destroy(gameObject);
+        }
     }
 }
