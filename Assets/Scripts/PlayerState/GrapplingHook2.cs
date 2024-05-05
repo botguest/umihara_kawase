@@ -237,6 +237,10 @@ public class GrapplingHook2 : MonoBehaviour
             onEnemyGrappled.Invoke(hitObject.GameObject()); //invoking the event & passing through hit object.
         }
         //Jingxing's Mods
+        if (hitObject == null) //just to make my debugger happy
+        {
+            return null;
+        }
         return hitObject.gameObject;
 
     }
