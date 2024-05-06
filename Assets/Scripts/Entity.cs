@@ -41,7 +41,9 @@ public class Entity : MonoBehaviour
     #region collision
     public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
-    public virtual bool isLadderDetected() => Physics2D.OverlapCircle(this.transform.position, ladderDetectRadius, whatIsLadder);
+    public virtual bool isUpLadderDetected() => Physics2D.OverlapCircle(this.transform.position, ladderDetectRadius, whatIsLadder);
+
+    public virtual bool isDownLadderDetected() => Physics2D.OverlapCircle(this.transform.position - new Vector3(0,.5f,0), ladderDetectRadius, whatIsLadder);
     public virtual bool isCertainMaskDetected() => Physics2D.OverlapCircle(this.transform.position, ladderDetectRadius, whatIsCertainMask);
 
     protected virtual void OnDrawGizmos()
@@ -49,6 +51,7 @@ public class Entity : MonoBehaviour
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
         Gizmos.DrawSphere(this.transform.position, ladderDetectRadius);
+        Gizmos.DrawSphere(this.transform.position - new Vector3(0, .5f, 0), ladderDetectRadius);
     }
     #endregion
 

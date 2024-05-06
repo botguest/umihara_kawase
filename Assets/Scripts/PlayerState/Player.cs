@@ -13,6 +13,7 @@ public class Player : Entity
     public float jumpForce;
     private bool grapple = false;
     public Collider2D col;
+    public string field1;
 
     public void GrappleEnemy()
     {
@@ -50,7 +51,7 @@ public class Player : Entity
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
         grappleState = new PlayerGrappleState(this, stateMachine, "Grapple");
         deadState = new PlayerDeadState(this, stateMachine, "Dead");
-        ladderState = new PlayerLadderState(this, stateMachine, "ladder");
+        ladderState = new PlayerLadderState(this, stateMachine, "Ladder");
         col = GetComponent<Collider2D>();
 
     }
@@ -90,6 +91,14 @@ public class Player : Entity
             {
                 stateMachine.ChangeState(deadState);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Respawn") //also detect if a certain boolean in the enemy script is true (stunned/not stunned)
+        {
+            stateMachine.ChangeState(deadState);
         }
     }
 

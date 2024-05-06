@@ -38,7 +38,7 @@ public class PlayerLadderState : PlayerState
             stateMachine.ChangeState(player.moveState);
         }
 
-        if(!player.isLadderDetected())
+        if(!player.isUpLadderDetected())
         {
             stateMachine.ChangeState(player.idleState);
         }

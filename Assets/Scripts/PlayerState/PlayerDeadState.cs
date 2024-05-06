@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDeadState : PlayerState
 {
@@ -12,13 +13,26 @@ public class PlayerDeadState : PlayerState
     {
         base.Enter();
         player.SetZeroVelocity();
-        player.GetComponent<Collider2D>().enabled = false;
-        rb.gravityScale = 0;
+        rb.gravityScale = 2;
+        rb.mass = 100;
 
     }
+
+    public override void Update()
+    {
+        base.Update();
+        if (triggerCalled == true)
+        {
+            SceneManager.LoadScene(player.field1);
+        }
+    }
+
+
 
     public override void Exit()
     {
         base.Exit();
+
+        
     }
 }

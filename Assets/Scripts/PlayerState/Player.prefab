@@ -169,8 +169,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0042672157, y: -0.0061000586}
-  m_Size: {x: 0.9402609, y: 1.7863319}
+  m_Offset: {x: -0.011053324, y: 0.020710707}
+  m_Size: {x: 0.8330178, y: 1.4569421}
   m_Direction: 0
 --- !u!50 &2602685133416495661
 Rigidbody2D:
@@ -212,9 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 2273834367382790280}
-  groundCheckDistance: 0.82
+  groundCheckDistance: 0.61
   wallCheck: {fileID: 6349847692626014782}
-  wallCheckDistance: 0.76
+  wallCheckDistance: 0.58
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -227,12 +227,7 @@ MonoBehaviour:
   ladderDetectRadius: 0.2
   moveSpeed: 10
   jumpForce: 20
-  player_mask:
-    serializedVersion: 2
-    m_Bits: 1024
-  ground_mask:
-    serializedVersion: 2
-    m_Bits: 8
+  col: {fileID: 0}
 --- !u!231 &9201352284974015343
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -326,6 +321,7 @@ GameObject:
   - component: {fileID: 2580922172709050350}
   - component: {fileID: 6488177581015970064}
   - component: {fileID: 9033312167483851308}
+  - component: {fileID: 2496426776392059798}
   m_Layer: 0
   m_Name: AnimationSprite
   m_TagString: Untagged
@@ -343,7 +339,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7341910823483976089}
@@ -409,7 +405,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 0e75be62754d80e4fbfcfca68743736a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -421,6 +417,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2496426776392059798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945057952772850018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dc3f1352c67b949a07ecbc8b19a659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2705401863452150301
 GameObject:
   m_ObjectHideFlags: 0

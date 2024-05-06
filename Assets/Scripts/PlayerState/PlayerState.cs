@@ -13,6 +13,7 @@ public class PlayerState
     private string animBoolName;
     protected float xInput;
     protected float yInput;
+    protected bool triggerCalled;
 
 
     protected float stateTimer; //this can be set to any number in one particular state. A handy timer.
@@ -29,6 +30,7 @@ public class PlayerState
     {
         player.anim.SetBool(animBoolName, true); //Play the assigned animation
         rb = player.rb;
+        triggerCalled = false;
     }
 
     public virtual void Update()
@@ -47,7 +49,7 @@ public class PlayerState
 
     public virtual void AnimationFinishedTrigger()
     {
-
+        triggerCalled = true;
     }
 
     
