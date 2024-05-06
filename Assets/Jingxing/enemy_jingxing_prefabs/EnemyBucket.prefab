@@ -201,11 +201,18 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsLadder:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsCertainMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ladderDetectRadius: 0
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 0
   moveSpeed: 0
-  idleTime: 4
+  idleTime: 10
   shockTime: 1
   attackDistance: 0
   attackCooldown: 0

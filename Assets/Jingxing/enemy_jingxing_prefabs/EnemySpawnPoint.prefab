@@ -40,7 +40,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6523239429290414824}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -99,4 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn: 0
   likeliness: 0
+  distanceToSpawnMore: 15
+  distanceToWayTooClose: 7
+  spawnCounterOriginalVal: 6
   enemy_0: {fileID: 3619441142415838107, guid: 551c05c222c4544a4b1d4927164f7afe, type: 3}

@@ -11,9 +11,12 @@ public class scrEnemySpawnPoint : MonoBehaviour
 
     public bool spawn; //the flag, controlled by manager
     public int likeliness; //how likely for this spawn point to spawn. 0-100
-    public float distanceToDeactivate; //the distance shorter than which the spawn point is not going to spawn.
+    public float distanceToSpawnMore; //the distance shorter than which the spawn point is not going to spawn.
+    public float distanceToWayTooClose;
+    public float spawnCounterOriginalVal;
     
     public Enemy enemy_0; //to be spawned
+    
     
     private GameObject thePlayer;
     
@@ -21,12 +24,18 @@ public class scrEnemySpawnPoint : MonoBehaviour
     private bool tooClose = false;
     private bool prevClose = false;
 
+    private bool wayTooClose = false;
+    private bool prevWayTooClose = false;
+
+    private float spawnCounter;
+
     #region Start & Update
     
     // Start is called before the first frame update
     void Start()
     {
-        likeliness = 5; //instantiating likeliness
+        likeliness = 10; //instantiating likeliness
+        spawnCounter = spawnCounterOriginalVal;
         SetPlayer();
         StartCoroutine(TrySpawn());
     }
@@ -34,8 +43,9 @@ public class scrEnemySpawnPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsTooCloseFlipped(50); //if yes, alter likeliness accordingly
-        
+        SpawnCounterTick();
+        IsTooCloseFlipped(30); //if yes, alter likeliness accordingly
+        IsWayTooCloseFlipped(100);
         SpawnChecker();
     }
     
@@ -47,9 +57,10 @@ public class scrEnemySpawnPoint : MonoBehaviour
     //Spawn_Checker, put this in Update()
     void SpawnChecker()
     {
-        if (spawn)
+        if (spawn && spawnCounter <= 0)
         {
             Spawn();
+            spawnCounter = spawnCounterOriginalVal;
         }
     }
 
@@ -87,6 +98,34 @@ public class scrEnemySpawnPoint : MonoBehaviour
         return false;
 
     }
+
+    bool IsWayTooCloseFlipped(int likeliness_magnitude)
+    {
+        CheckIfWayTooClose();
+        
+        if (prevWayTooClose != wayTooClose) //if it has been flipped
+        {
+            if (prevWayTooClose == true) //close to far
+            {
+                likeliness = likeliness + likeliness_magnitude;
+            }
+            
+            else if (prevWayTooClose == false) //far to close
+            {
+                likeliness = likeliness - likeliness_magnitude;
+            }
+            
+            prevWayTooClose = wayTooClose;
+            return true;
+        }
+
+        return false;
+    }
+
+    void SpawnCounterTick()
+    {
+        spawnCounter = spawnCounter - Time.deltaTime;
+    }
     
     #endregion
     
@@ -112,7 +151,7 @@ public class scrEnemySpawnPoint : MonoBehaviour
     
     bool CheckIfTooClose()
     {
-        if (DistanceToPlayer() <= distanceToDeactivate)
+        if (DistanceToPlayer() <= distanceToSpawnMore)
         {
             tooClose = true;
             return true;
@@ -120,6 +159,20 @@ public class scrEnemySpawnPoint : MonoBehaviour
         else
         {
             tooClose = false;
+            return false;
+        }
+    }
+
+    bool CheckIfWayTooClose()
+    {
+        if (DistanceToPlayer() <= distanceToWayTooClose)
+        {
+            wayTooClose = true;
+            return true;
+        }
+        else
+        {
+            wayTooClose = false;
             return false;
         }
     }
@@ -136,7 +189,7 @@ public class scrEnemySpawnPoint : MonoBehaviour
         while (true)
         {
             //debugging
-            print("spawn likeliness: " + likeliness);
+            Debug.Log("spawn likeliness: " + likeliness);
             
             //call spawn maybe?
             if (random.Next(0, 100) <= likeliness)
@@ -144,7 +197,7 @@ public class scrEnemySpawnPoint : MonoBehaviour
                 spawn = true;
             }
             
-            yield return new WaitForSeconds(1f); //the point of execution pause & resume in following frame (after 1s)
+            yield return new WaitForSeconds(2f); //the point of execution pause & resume in following frame (after 1s)
         }
     }
     

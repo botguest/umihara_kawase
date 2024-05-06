@@ -27,6 +27,7 @@ public class GoldFishMoveState : GoldFishGroundedState
         if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
         {
             enemy.Flip();
+            enemy.flipCounter--;
             stateMachine.ChangeState(enemy.idleState);
         }
 

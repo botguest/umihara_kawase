@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy_GoldFish : Enemy
 {
+    public int flipCounter = 3;
+        
     #region States
     public GoldFishIdleState idleState {  get; private set; }
     public GoldFishMoveState moveState { get; private set; }
@@ -34,6 +36,10 @@ public class Enemy_GoldFish : Enemy
     protected override void Update()
     {
         base.Update();
+        if (flipCounter <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     
     //need a on collisionEnter
