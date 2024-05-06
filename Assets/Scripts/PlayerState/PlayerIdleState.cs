@@ -13,6 +13,8 @@ public class PlayerIdleState : PlayerGroundedState
         base.Enter();
 
         player.SetZeroVelocity();
+
+        stateTimer = .5f;
     }
 
     public override void Exit()
@@ -29,6 +31,7 @@ public class PlayerIdleState : PlayerGroundedState
 
         if(xInput != 0 && !player.isBusy)
             stateMachine.ChangeState(player.moveState);
+
         
     }
 }
