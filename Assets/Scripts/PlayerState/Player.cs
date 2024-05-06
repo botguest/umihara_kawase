@@ -12,8 +12,6 @@ public class Player : Entity
     public float moveSpeed;
     public float jumpForce;
     private bool grapple = false;
-    public LayerMask self_mask;
-    public LayerMask ground_mask;
     public Collider2D col;
 
     public void GrappleEnemy()

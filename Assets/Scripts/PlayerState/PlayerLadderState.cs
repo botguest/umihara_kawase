@@ -25,6 +25,7 @@ public class PlayerLadderState : PlayerState
         base.Exit();
         rb.gravityScale = 9.8f;
         player.col.enabled = true;
+        rb.AddForce(new Vector2(player.facingDir * 30, 60), ForceMode2D.Impulse);
     }
 
     public override void Update()
