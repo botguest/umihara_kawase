@@ -12,6 +12,9 @@ public class Player : Entity
     public float moveSpeed;
     public float jumpForce;
     private bool grapple = false;
+    public LayerMask self_mask;
+    public LayerMask ground_mask;
+    public Collider2D col;
 
     public void GrappleEnemy()
     {
@@ -38,6 +41,7 @@ public class Player : Entity
 
     protected override void Awake()
     {
+
         base.Awake();
 
         stateMachine = new PlayerStateMachine(); 
@@ -49,6 +53,7 @@ public class Player : Entity
         grappleState = new PlayerGrappleState(this, stateMachine, "Grapple");
         deadState = new PlayerDeadState(this, stateMachine, "Dead");
         ladderState = new PlayerLadderState(this, stateMachine, "ladder");
+        col = GetComponent<Collider2D>();
 
     }
 
@@ -89,25 +94,6 @@ public class Player : Entity
             }
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision) //if the player jumps onto the ladder
-    {
-        if(collision.CompareTag("ladder"))
-        {
-            Debug.Log("in ladder");
-            stateMachine.ChangeState(ladderState);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision) //if the player jumps onto the ladder
-    {
-        if (collision.CompareTag("ladder"))
-        {
-            stateMachine.ChangeState(idleState);
-            rb.AddForce(new Vector2(facingDir * 30, 60), ForceMode2D.Impulse);
-        }
-    }
-
 
 
 }

@@ -11,6 +11,7 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        stateTimer = .7f;
     }
 
     public override void Exit()
@@ -29,5 +30,8 @@ public class PlayerGroundedState : PlayerState
 
         if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected()) 
             stateMachine.ChangeState(player.jumpState);
+
+        if (Input.GetKeyDown(KeyCode.W) && player.isLadderDetected() && stateTimer < 0)
+            stateMachine.ChangeState(player.ladderState);
     }
 }

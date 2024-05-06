@@ -14,6 +14,7 @@ public class PlayerJumpState : PlayerState
 
         //player.Addforce(0, player.jumpForce);
         rb.velocity = new Vector2(rb.velocity.x, player.jumpForce);
+        stateTimer = .7f;
     }
 
     public override void Exit()
@@ -30,7 +31,9 @@ public class PlayerJumpState : PlayerState
         if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.airState);
 
-        
+        if (Input.GetKeyDown(KeyCode.W) && player.isLadderDetected() && stateTimer < 0)
+            stateMachine.ChangeState(player.ladderState);
+
     }
 
 }

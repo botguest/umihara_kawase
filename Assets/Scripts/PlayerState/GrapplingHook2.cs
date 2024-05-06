@@ -12,6 +12,7 @@ public class GrapplingHook2 : MonoBehaviour
     private bool isFiring = false; //grapple hook is traveling
     private Transform player_transform;
     private Vector3 hook;
+    [SerializeField] private GameObject hook_object;
     [SerializeField] private float hookSpeed;
     [SerializeField] private LineRenderer rope;
     [SerializeField] private float rope_max_dist;
