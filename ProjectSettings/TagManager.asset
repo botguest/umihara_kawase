@@ -7,6 +7,8 @@ TagManager:
   - enemy
   - enemy_minor
   - ladder
+  - shield_manager
+  - shield
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - Enemy
   - Enemy Minor
-  - 
+  - Shield
   - 
   - 
   - 

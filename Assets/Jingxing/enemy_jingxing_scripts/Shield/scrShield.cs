@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class scrShield : MonoBehaviour
 {
-    //when player collide with shield, charge +25.
-    public int Charge;
     
     // Start is called before the first frame update
     void Start()
@@ -16,7 +14,8 @@ public class scrShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("Player position from shield: " + GameObject.FindGameObjectWithTag("Player").transform.position);
+        transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
     
     

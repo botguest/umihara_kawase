@@ -52,6 +52,21 @@ public class scrEnemy_Unagi : Enemy
     {
         if (other.gameObject.CompareTag("Player") && IsMyStateGrappled<UnagiGrappledState>())
         {
+            //for shieldmanager in the scene, +25
+            if (base.FindShieldManager().GetComponent<scrShieldManager>().Charge < 50 && GameObject.FindGameObjectWithTag("shield") == null)
+            {
+                base.FindShieldManager().GetComponent<scrShieldManager>().Charge += 25;
+            }
+            
+            Destroy(gameObject);
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("shield") && !IsMyStateGrappled<UnagiGrappledState>())
+        {
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }

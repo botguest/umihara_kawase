@@ -70,5 +70,11 @@ public class Enemy : Entity
     {
         return stateMachine.currentState is GrappledStateType;
     }
+
+    public GameObject FindShieldManager()
+    {
+        GameObject ShieldManager = GameObject.FindGameObjectWithTag("shield_manager");
+        return ShieldManager;
+    }
     //Jingxing's Mods
 }
