@@ -53,7 +53,7 @@ public class GrapplingHook2 : MonoBehaviour
     {
         //Debug.Log(EnemyDetected());
         CheckDirectionInput();
-        Debug.Log("isHooked: " + isHooked + ", isFiring: " + isFiring);
+        Debug.Log(hitObject);
 
         if (Input.GetKey(KeyCode.J))
         {
@@ -186,13 +186,18 @@ public class GrapplingHook2 : MonoBehaviour
     void hookAttachedToEnemy()
     {
         float maxDist = freeMovingDist + tensionDistance;
-        grappleLength = Vector2.Distance(hitObject.transform.position, player_transform.position);
+        if (hitObject != null)
+        {
+            grappleLength = Vector2.Distance(hitObject.transform.position, player_transform.position);
+            DrawRope(hitObject.transform.position);
+        }
+            
         if (grappleLength > freeMovingDist) //if the player pulls the rope, feels tension
             joint.distance = freeMovingDist;
         else
             joint.distance = grappleLength; //if player is moving inside free moving distance, player can freely move without tension
 
-        DrawRope(hitObject.transform.position);
+        
         //there are two distances. One distance is free moving distance, in which player can move freely without feeling the tension. But once this distance is exceeded, the player will feel tension, and cannot move out a fixed distance.
 
         if (Input.GetKey(KeyCode.S) && freeMovingDist >= .2f) //when player shortens the wire, the free moving distance and distance of spring both decreases, while frequency remains unchanged. So player will be pulled.

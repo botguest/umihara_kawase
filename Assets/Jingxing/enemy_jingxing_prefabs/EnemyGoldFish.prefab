@@ -174,16 +174,24 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsLadder:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsCertainMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ladderDetectRadius: 0
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 0
   moveSpeed: 3
   idleTime: 1
-  shockTime: 1
+  shockTime: 15
   attackDistance: 0
   attackCooldown: 0
   lastTimeAttacked: 0
   grappled: 0
+  flipCounter: 3
 --- !u!50 &770237270595873132
 Rigidbody2D:
   serializedVersion: 4

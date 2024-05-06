@@ -232,14 +232,22 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsLadder:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsCertainMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ladderDetectRadius: 0
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 0
   moveSpeed: 2
   idleTime: 1
-  battleTime: 0
+  shockTime: 15
   attackDistance: 0
   attackCooldown: 0
   lastTimeAttacked: 0
+  grappled: 0
   throwFishTime: 1
   UnagiBaby: {fileID: 4020130793470423837, guid: 2ef538615df234a348da4ef0fb044aba, type: 3}

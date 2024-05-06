@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
 public class Player : Entity
@@ -64,6 +65,10 @@ public class Player : Entity
 
     protected override void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(field1);
+        }
         base.Update();
         stateMachine.currentState.Update();
         Debug.Log(stateMachine.currentState);

@@ -213,7 +213,7 @@ MonoBehaviour:
     m_Bits: 0
   moveSpeed: 0
   idleTime: 10
-  shockTime: 1
+  shockTime: 15
   attackDistance: 0
   attackCooldown: 0
   lastTimeAttacked: 0
