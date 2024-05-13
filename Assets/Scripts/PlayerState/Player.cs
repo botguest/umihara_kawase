@@ -107,5 +107,9 @@ public class Player : Entity
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 
 }
