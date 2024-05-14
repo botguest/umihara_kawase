@@ -11,7 +11,7 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        stateTimer = .3f;
+        stateTimer = .7f;
     }
 
     public override void Exit()

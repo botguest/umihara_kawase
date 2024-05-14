@@ -29,6 +29,8 @@ public class GrapplingHook2 : MonoBehaviour
     private Vector3 lastDirectionSaved;
     private GameObject hitObject;
     private bool hit;
+    public AudioSource hookattachsound;
+    public AudioSource hooklaunchsound;
     
 
     //Jingxing's Mods
@@ -68,6 +70,7 @@ public class GrapplingHook2 : MonoBehaviour
             }
             else if (isHooked && !isFiring)// hanged state
             {
+                hookattachsound.Play();
                 //rope shorten and lengthen logic
                 if (isWallDetected())
                 {
@@ -112,13 +115,13 @@ public class GrapplingHook2 : MonoBehaviour
         isFiring = true;
         isHooked = false;
         lastDirectionSaved = lastDirection;
+        hooklaunchsound.Play();
     }
 
     void FiringGrapple()
     {
         Debug.Log("Firing grapple in direction: " + lastDirection);
         hook += lastDirectionSaved * Time.deltaTime * hookSpeed;
-        
         DrawRope(hook);
         //only three possibilities: touches a wall, touches an enemy or reach maximum distance. Else would be release button.
         if (isWallDetected())
@@ -159,6 +162,7 @@ public class GrapplingHook2 : MonoBehaviour
 
     void hookAttachedToWall()
     {
+        
         float maxDist = freeMovingDist + tensionDistance;
         grappleLength = Vector2.Distance(grapplePoint, player_transform.position);
         if (grappleLength > freeMovingDist) //if the player pulls the rope, feels tension

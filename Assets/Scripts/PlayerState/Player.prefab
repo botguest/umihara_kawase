@@ -146,7 +146,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 609160286629828863}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: ac4413bb11dead04b9a4f3bc508be909, type: 2}
+  m_Material: {fileID: 6200000, guid: 661a139037b23f04ab787483975e17f8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -184,10 +184,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 9.8
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -225,9 +225,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   ladderDetectRadius: 0.2
-  moveSpeed: 10
-  jumpForce: 20
+  moveSpeed: 5
+  jumpForce: 15
   col: {fileID: 0}
+  field1: Field1
 --- !u!231 &9201352284974015343
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
   hook_object: {fileID: 139685573520588853}
   hookSpeed: 15
   rope: {fileID: 7974603395123748681}
-  rope_max_dist: 6
+  rope_max_dist: 7
   deviation: 0.1
   grappledLayer:
     serializedVersion: 2

@@ -37,8 +37,8 @@ public class PlayerState
     {
         stateTimer -= Time.deltaTime;
 
-        xInput = Input.GetAxisRaw("Horizontal"); // return -1 or 1
-        yInput = Input.GetAxisRaw("Vertical");
+        xInput = Input.GetAxis("Horizontal");
+        yInput = Input.GetAxis("Vertical");
         player.anim.SetFloat("yVelocity", rb.velocity.y);
     }
 

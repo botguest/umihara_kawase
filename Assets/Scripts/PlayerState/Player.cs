@@ -15,6 +15,7 @@ public class Player : Entity
     private bool grapple = false;
     public Collider2D col;
     public string field1;
+    public AudioSource die;
 
     public void GrappleEnemy()
     {

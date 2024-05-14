@@ -15,7 +15,7 @@ public class PlayerDeadState : PlayerState
         player.SetZeroVelocity();
         rb.gravityScale = 2;
         rb.mass = 100;
-
+        player.die.Play();
     }
 
     public override void Update()
