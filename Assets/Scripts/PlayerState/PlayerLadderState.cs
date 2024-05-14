@@ -31,9 +31,9 @@ public class PlayerLadderState : PlayerState
     {
         base.Update();
 
-        if (xInput != 0 && !player.IsWallDetected()) //if player moves horizontally and no wall is beside him
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) && !player.IsWallDetected()) //if player moves horizontally and no wall is beside him
         {
-            stateMachine.ChangeState(player.moveState);
+            stateMachine.ChangeState(player.idleState);
         }
 
         if(!player.isDownLadderDetected())
